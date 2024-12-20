@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenskart</title>
+    <!-- remixicon css  -->
+     <link rel="stylesheet" href="/remix/remixicon.css" type="text/css">
+    <!-- bootstrap css  -->
+     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <!-- main css  -->
+     <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+    <nav>
+        <a href="/">home</a>
+        <a href="/addProduct">addProduct</a>
+    </nav>
+    <section>
+        <form method="post" action="insertProduct" enctype="multipart/form-data" class="mx-auto px-4 py-3">
+            <label class="mb-1 mt-3">Product Name:- </label>
+            <input type="text" name="name" class="form-control"/>
+
+            <label class="mb-1 mt-3">Product Price:- </label>
+            <input type="number" name="price" class="form-control"/>
+
+            <label class="mb-1 mt-3">Product Rating:- </label>
+            <input type="number" name="rating" class="form-control"/>
+
+            <label class="mb-1 mt-3">Frame Size:- </label>
+            <% let frame_sizeNames = ["Extra-Narrow","Narrow","Medium","Wide","Extra-Wide"]%>
+            <div class="row">
+                <% frame_sizeNames.map((item)=>{ %>
+                    <div class="col-4">
+                        <input type="checkbox" name="frame_size" value="<%= item %>"/>
+                        <span class="ms-2"><%= item %></span>
+                    </div>
+                <% }) %>
+            </div>
+
+            <div>
+                <label class="mb-1 mt-3">Product Brand:- </label>
+                <% let brandNames = ["Jon-Jacobs","Lenskart Air","Owndays","Fassi"]%>
+                <select name="brand">
+                    <option value="">--selet--</option>
+                    <% brandNames.map((item)=>{ %>
+                        <option value="<%= item %>"><%= item %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <label class="mb-1 mt-3">Product Color:- </label>
+            <% let colorNames = ["red","yellow","blue","orange","black"]%>
+            <div class="row">
+                <% colorNames.map((item)=>{ %>
+                    <div class="col-3">
+                        <input type="checkbox" name="color" value="<%= item %>"/><span class="ms-2"><%= item %></span>
+                    </div>
+                <% }) %>
+            </div>
+
+            <label class="mb-1 mt-3">Product Images:- </label>
+            <input type="file" name="images" multiple />
+
+            <label class="mb-1 mt-3">Product Decsription:- </label>
+            <textarea name="decsription" class="form-control"></textarea>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-success">Add</button>
+            </div>
+
+        </form>
+    </section>
+
+
+    <script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+</body>
+</html>

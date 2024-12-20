@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenskart</title>
+    <!-- remixicon css  -->
+     <link rel="stylesheet" href="/remix/remixicon.css" type="text/css">
+    <!-- bootstrap css  -->
+     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <!-- main css  -->
+     <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+    <nav>
+        <a href="/">home</a>
+        <a href="/addProduct">addProduct</a>
+    </nav>
+    
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <% allProduct.map((item)=>{ %>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div>
+                                <img src="<%= item.images[0] %>" alt="cover Images" title="Cover Image" width="100%" class="img-fuild">
+                            </div>
+                            <div class="card-body">
+                                <h4><%= item.name %></h4>
+                                <p><%= item.rating %></p>
+                                <p>Size: <%= item.frame_size.join(', ') %></p>
+                                <p><%= item.price %></p>
+                                <a href="/updateProduct/<%= item.id %>">update</a>
+                                <a href="/deleteProduct/<%= item.id %>">delete</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+</body>
+</html>

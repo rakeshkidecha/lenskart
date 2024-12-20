@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenskart</title>
+    <!-- remixicon css  -->
+     <link rel="stylesheet" href="/remix/remixicon.css" type="text/css">
+    <!-- bootstrap css  -->
+     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <!-- main css  -->
+     <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+    <nav>
+        <a href="/">home</a>
+        <a href="/addProduct">addProduct</a>
+    </nav>
+    <section>
+        <form method="post" action="/editProduct" enctype="multipart/form-data" class="mx-auto px-4 py-3">
+
+            <input type="hidden" name="pId" value="<%= singleProduct.id %>">
+
+            <label class="mb-1 mt-3">Product Name:- </label>
+            <input type="text" name="name" value="<%= singleProduct.name %>" class="form-control"/>
+
+            <label class="mb-1 mt-3">Product Price:- </label>
+            <input type="number" name="price" value="<%= singleProduct.price %>" class="form-control"/>
+
+            <label class="mb-1 mt-3">Product Rating:- </label>
+            <input type="number" name="rating" value="<%= singleProduct.rating %>" class="form-control"/>
+
+            <label class="mb-1 mt-3">Frame Size:- </label>
+            <% let frame_sizeNames = ["Extra-Narrow","Narrow","Medium","Wide","Extra-Wide"]%>
+            <div class="row">
+                <% frame_sizeNames.map((item)=>{ %>
+                    <div class="col-4">
+                        <input type="checkbox" name="frame_size" value="<%= item %>" 
+                        <%= singleProduct.frame_size.includes(item)?'checked':'' %>/>
+                        <span class="ms-2"><%= item %></span>
+                    </div>
+                <% }) %>
+            </div>
+
+            <div>
+                <label class="mb-1 mt-3">Product Brand:- </label>
+                <% let brandNames = ["Jon-Jacobs","Lenskart Air","Owndays","Fassi"]%>
+                <select name="brand">
+                    <option value="">--selet--</option>
+                    <% brandNames.map((item)=>{ %>
+                        <option value="<%= item %>" <%= singleProduct.brand===item?'selected':'' %>><%= item %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <label class="mb-1 mt-3">Product Color:- </label>
+            <% let colorNames = ["red","yellow","blue","orange","black"]%>
+            <div class="row">
+                <% colorNames.map((item)=>{ %>
+                    <div class="col-3">
+                        <input type="checkbox" name="color" value="<%= item %>" 
+                        <%= singleProduct.color.includes(item)?'checked':'' %> /><span class="ms-2"><%= item %></span>
+                    </div>
+                <% }) %>
+            </div>
+
+            <label class="mb-1 mt-3">Product Images:- </label>
+            <input type="file" name="images" multiple />
+            <div>
+                <% singleProduct.images.map((item)=>{ %>
+                    <img src="<%= item %>" alt="" width="100px">
+                <% }) %>
+            </div>
+
+            <label class="mb-1 mt-3">Product Decsription:- </label>
+            <textarea name="decsription" class="form-control"><%= singleProduct.decsription %></textarea>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-success">confirm</button>
+                <a href="/" class="btn btn-secondary">csncel</a>
+            </div>
+
+        </form>
+    </section>
+
+
+    <script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+</body>
+</html>
